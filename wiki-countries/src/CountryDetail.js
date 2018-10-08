@@ -1,13 +1,12 @@
 import React from "react";
-import data from "./data/countries.json";
 
 
 export default class CountryDetail extends React.Component {
   constructor(props){
     super(props);
-    this.state = {country: ""};
-    console.log(this.state.country)
-    this.country = data.filter((country)=>(country.name.common === this.state.country));
+    this.props = props;
+    //this.state = {country: props.country};
+    console.log(this.props.country.borders);
   }
 
 
@@ -15,7 +14,18 @@ export default class CountryDetail extends React.Component {
     return(
       <div className="col-4">
         <div>
-          {this.props.match.params.id}
+          <p><b>Name:</b> {this.props.country.name.common}</p>
+          <hr/>
+          <p><b>Capital City:</b> {this.props.country.capital}</p>
+          <hr/>
+          <p><b>Area:</b> {this.props.country.area}</p>
+          <hr/>
+          <h4><b>Borders:</b></h4>
+          <ul>
+            {this.props.country.borders.map((e)=>(<li>{e}</li>))}
+          </ul>
+          
+          
         </div>
       </div>
     )

@@ -17,11 +17,13 @@ export default class CountryList extends React.Component {
       <div className="row">
         <ul className="list-group col-4">
           {data.map((country) => {
-            return (<CountryItem key={country.name.common} name={country.name.common} />)
+            return (<CountryItem key={country.name.common} cca3={country.cca3} name={country.name.common} />)
           })}
         </ul>
         <Switch>
-          <Route path='/:id' component={CountryDetail} />
+          <Route path='/:id' render={(props) =>
+            <CountryDetail country={data.find(e => props.match.params.id === e.cca3)} />
+          } /> 
         </Switch>
       </div>
     )
